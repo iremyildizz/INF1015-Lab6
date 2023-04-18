@@ -11,7 +11,17 @@
 #include <functional>
 #include <qstring.h>
 
-enum class Team {Pink, White};
+
+enum class Team {Lilac, Pink};
+
+namespace icons {
+	const QString lilacKingIcon = "./images/King_Black.png";
+	const QString pinkKingIcon = "./images/King_White.png";
+	const QString lilacRookIcon = "./images/Rook_Black.png";
+	const QString pinkRookIcon = "./images/Rook_White.png";
+	const QString lilacBishopIcon = "./images/Bishop_Black.png";
+	const QString pinkBishopIcon = "./images/Bishop_White.png";
+}
 
 class PieceAbs {
 public:
@@ -37,7 +47,10 @@ class King : public PieceAbs {
 public:
 	King(Team team, int x, int y);
 	bool isValidMove(int x, int y);
+	static void updateCounter();
+
 protected:
+	static int counter_;
 };
 
 class Bishop : public PieceAbs {
