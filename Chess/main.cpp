@@ -15,7 +15,7 @@
 #include "ChessCase.h"
 #include "Controller.h"
 #include <memory>
-
+#include "RAII.h"
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
@@ -25,6 +25,11 @@ int main(int argc, char *argv[])
     std::shared_ptr<ChessGrid> chessGrid = std::make_shared<ChessGrid>(controller);
     chessGrid->addPieces(game.test1());
     controller->setGrid(chessGrid);
+
+    {
+        RAII raii(chessGrid);
+        raii.placePiece();
+    }
 
     // Create a widget
     QWidget* widget = new QWidget();
